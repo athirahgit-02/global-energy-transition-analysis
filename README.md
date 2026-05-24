@@ -18,13 +18,13 @@ Goal: To look past absolute baseline sizes by normalizing the data into grid per
 
 Here is how the data was transformed from a messy raw file into a high-quality analysis:  
 
-1. Column Type Conversion: The `Density\\n(P/Km2)` column was showing up as an `object` (text) because of formatting issues. Cleaned the string characters and forced the column type to a float/numeric data type using Pandas.
+1. Data Type Conversion: The `Density\\n(P/Km2)` column was showing up as an `object` (text) because of formatting issues. Cleaned the string characters and forced the column type to a float/numeric data type using Pandas.
 2. Null Values (Missing Data): Investigated the null values and dropped the columns that are **missing more than 25% of its data** as they can threatened the completeness of the project and introduce massive bias.
 3. Duplicate Rows: Ran a global duplicate verification check across key tracking columns and confirmed the dataset was **100% unique**. It is to ensures that every country has exactly one record per year, protecting the integrity of all calculations.
 
 ## The Data Analysis Pipeline:  
 
-1. Get Percentage Share: <br> Combined the total of two column (Electricity from renewables (TWh) & Electricity from fossil fuels (TWh)) to find Total Generation, then calculated each source's percentage out of this total.
+1. Get Percentage Share: Combined the total of two column (Electricity from renewables (TWh) & Electricity from fossil fuels (TWh)) to find Total Generation, then calculated each source's percentage out of this total.
 2. Find Global Average: Used Pandas `.groupby('Year').mean()` to calculate the average of the countries' percentages for each respective year. This condenses thousands of country rows into a single global timeline.
 3. Index Baseline (Year 2000 = 100): Used `.iloc[0]` to extract the very first row of this chronological timeline which is the global average for the year 2000 and used it as a locked mathematical divisor. Every subsequent year's average was divided by this year 2000 baseline value, then multiplied by 100. Because the year 2000 divides by itself, it naturally quantified at exactly 100.
 4. Correlation Coefficient: Mathematically verified that the renewables actively replacing the fossil fuels. A negative correlation (close to -1) confirmed that there is an inverse relationship between the growth of renewable energy and the fossil fuels reliance.
@@ -33,9 +33,17 @@ Here is how the data was transformed from a messy raw file into a high-quality a
 
 ![Energy Transition Gap](./energy_transition_chart.png)  
 
-1. Steady Transition: Both lines started out moving in gradual, steady slopes rather than sudden spikes. <br> Because energy relies on massive physical power grids and factories, change takes time.
+1. Steady Transition: Both lines started out moving in gradual, steady slopes rather than sudden spikes. Because energy relies on massive physical power grids and factories, change takes time.
 2. Turning Point: The year 2012 became a crucial structural turning point for the global energy mix. Prior to 2012, fossil fuel reliance held perfectly steady. Post-2012, renewable growth accelerated upward, marking the exact period where green energy shifted from merely expanding to actively displacing fossil fuels.
 4. Growth rate: By 2020, the chart reveals a clear inverse relationship between renewables and fossil fuels energy. Renewables climbed by roughly 15%, while fossil fuels dropped by about 5%. While renewables are scaling up three times faster to capture the vast majority of new global electricity demand, the minor 5% drop in fossil fuels proves that clean energy has not yet completely replaced existing baseline infrastructure.
+
+## Analysis Summary  
+
+This analysis successfully processed global energy data from raw cleaning to statistical proof:  
+
+The Process: Eliminated volume-scale bias by converting raw power metrics into relative grid shares. The national data was aggregated into a unified global timeline and indexed to a base year of 2000 (Index = 100) to track relative growth velocity.  
+The Insight: Identified 2012 as a critical structural turning point. Prior to 2012, global fossil fuel reliance held perfectly steady. Post-2012, renewable energy growth accelerated sharply, shifting from baseline grid expansion to active fossil fuel displacement.  
+The Reality: By 2020, renewables climbed by 15% while fossil fuels dropped by 5%. This proves that while clean energy is scaling three times faster to capture new global electricity demand, it has not yet fully replaced established baseload infrastructure.  
 
 ## Future Analysis Plan  
 
