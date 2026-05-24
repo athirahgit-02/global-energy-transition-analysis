@@ -21,11 +21,21 @@ Here is how the data was transformed from a messy raw file into a high-quality a
 1. Get Percentage Share: <br> Combined the total of two column (Electricity from renewables (TWh) & Electricity from fossil fuels (TWh)) to find Total Generation, then calculated each source's percentage out of this total.
 2. Find Global Average: Used Pandas `.groupby('Year').mean()` to calculate the average of the countries' percentages for each respective year. This condenses thousands of country rows into a single global timeline.
 3. Index Baseline (Year 2000 = 100): Used `.iloc[0]` to extract the very first row of this chronological timeline which is the global average for the year 2000 and used it as a locked mathematical divisor. Every subsequent year's average was divided by this year 2000 baseline value, then multiplied by 100. Because the year 2000 divides by itself, it naturally quantified at exactly 100.
+4. Correlation Coefficient: Mathematically verified that the renewables actively replacing the fossil fuels. A negative correlation (close to -1) confirmed that there is an inverse relationship between the growth of renewable energy and the fossil fuels reliance.
 
 ## Data Insights  
 
 ![Energy Transition Gap](./energy_transition_chart.png)  
 
-1. Steady transition: Both lines move in gradual, steady slopes rather than sudden spikes. <br> Because energy relies on massive physical power grids and factories, change takes time. By using discrete chart markers (`o` and `x`) for every single year, the chart clearly maps this steady, year-by-year shift rather than a sudden disruption.  
-2. Turning point: 2012 was the official "pivot" year for the global energy mix. Before 2012, fossil fuels held perfectly steady. After 2012, renewables accelerated upward, and fossil fuels began their permanent decline. Adding a clear baseline line at 100 (`plt.axhline`) gives an immediate visual threshold and instantly show the exact year where green energy started actively **replacing** fossil fuels.
-3. Growth rate: By 2020, Renewables climbed to an index of **115 (a 15% growth)**, while Fossil Fuels dropped to **95 (a 5% decline)**. <br> In the raw data, a 5% drop in fossil fuels looks tiny. But by normalizing the data to a baseline of 100, it is shown that **Renewables are scaling up three times faster than fossil fuels are backing down.** Green energy is successfully capturing the vast majority of new global power demands.
+1. Steady Transition: Both lines started out moving in gradual, steady slopes rather than sudden spikes. <br> Because energy relies on massive physical power grids and factories, change takes time.
+2. Turning Point: The year 2012 became a crucial structural turning point for the global energy mix. Prior to 2012, fossil fuel reliance held perfectly steady. Post-2012, renewable growth accelerated upward, marking the exact period where green energy shifted from merely expanding to actively displacing fossil fuels.
+4. Growth rate: By 2020, the chart reveals a clear inverse relationship between renewables and fossil fuels energy. Renewables climbed by roughly 15%, while fossil fuels dropped by about 5%. While renewables are scaling up three times faster to capture the vast majority of new global electricity demand, the minor 5% drop in fossil fuels proves that clean energy has not yet completely replaced existing baseline infrastructure.
+
+## Future Analysis Plan  
+
+This multi-dimensional dataset provides an ideal foundation for scaling the analysis across four strategic pillars:
+
+1. Economic Impact: Investigate the relationship between aggressive clean energy adoption by correlating transition velocity against annual GDP growth and GDP per capita.
+2. Predictive Modeling: Leverage historical per-capita primary energy consumption to train machine learning forecasting models capable of predicting future global power demands.
+3. Environmental Analytics: Quantify the exact displacement efficiency of low-carbon electricity shares in directly reducing metric tons of CO2 emissions per capita.
+4. Socio-Demographic: Evaluate infrastructure distribution equity by analyzing how population density impacts a community's access to electricity and clean cooking fuels during a green infrastructure rollout.
