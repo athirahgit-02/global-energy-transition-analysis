@@ -8,6 +8,12 @@ Data Source: Compiled dataset hosted on [Kaggle](https://www.kaggle.com/datasets
 Problem: The global energy landscape is changing, but looking at raw percentages makes the growth of green energy look deceptively small and slow. This happens because fossil fuels dominate the total volume.  
 Goal: To look past the sheer size of these energy sources and accurately measure and analyze relative growth rate of renewable energy deployment against fossil fuel dependency globally from 2000 to 2020.
 
+### Tech Stack & Tools:  
+
+* Language: Python  
+* Libraries: Pandas, NumPy, Matplotlib
+* Kaggle Notebooks (Cloud-based Jupyter environment)
+
 ## Data Cleaning & Transformation Pipeline  
 
 Here is how the data was transformed from a messy raw file into a high-quality analysis:  
